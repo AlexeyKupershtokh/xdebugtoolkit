@@ -1,0 +1,175 @@
+version: 1
+creator: xdebug 2.2.1
+cmd: /home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+part: 1
+positions: line
+
+events: Time
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=c
+16 2
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=c
+16 2
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=a->__construct
+3 31
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=c
+calls=1 0 0
+4 2
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=c
+calls=1 0 0
+5 2
+
+fl=php:internal
+fn=php::usleep
+20 100090
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=d
+19 102
+cfl=php:internal
+cfn=php::usleep
+calls=1 0 0
+20 100090
+
+fl=php:internal
+fn=php::usleep
+20 100101
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=d
+19 87
+cfl=php:internal
+cfn=php::usleep
+calls=1 0 0
+20 100101
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=b->__construct
+10 56
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=d
+calls=1 0 0
+11 100193
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=d
+calls=1 0 0
+12 100189
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=c
+16 3
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=c
+16 3
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=a->__construct
+3 53
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=c
+calls=1 0 0
+4 3
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=c
+calls=1 0 0
+5 3
+
+fl=php:internal
+fn=php::usleep
+20 100133
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=d
+19 92
+cfl=php:internal
+cfn=php::usleep
+calls=1 0 0
+20 100133
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=c
+16 4
+
+fl=php:internal
+fn=php::usleep
+20 100079
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=d
+19 56
+cfl=php:internal
+cfn=php::usleep
+calls=1 0 0
+20 100079
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=c
+16 2
+
+fl=php:internal
+fn=php::register_shutdown_function
+31 18
+
+fl=php:internal
+fn=php::register_shutdown_function
+32 2
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn={main}
+
+summary: 401180
+
+1 255
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=a->__construct
+calls=1 0 0
+23 36
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=b->__construct
+calls=1 0 0
+24 200440
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=a->__construct
+calls=1 0 0
+25 60
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=d
+calls=1 0 0
+26 100226
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=c
+calls=1 0 0
+27 4
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=d
+calls=1 0 0
+28 100135
+cfl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+cfn=c
+calls=1 0 0
+29 2
+cfl=php:internal
+cfn=php::register_shutdown_function
+calls=1 0 0
+31 18
+cfl=php:internal
+cfn=php::register_shutdown_function
+calls=1 0 0
+32 2
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=c
+16 1
+
+fl=/home/wicked/Alawar/xdebugtoolkit-github/fixtures/1.php
+fn=c
+16 0
+

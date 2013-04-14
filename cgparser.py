@@ -205,18 +205,22 @@ class XdebugCachegrindFsaParser:
     # -2 got eof or fl, finish parsing
     # -1 error, finish parsing
     # 0 start
-    # 1 got version, expecting cmd
+    # 1 got version, expecting cmd or creator
     # 2 got cmd, expecting part
-    # 3 gor part, expecting events
+    # 3 got part, expecting events or positions
     # 4 got events, expecting fl or eof
+    # 5 got creator, expecting cmd
+    # 6 got positions, expecting events
     header_fsm = {
-        #    0   1   2   3   4
-        0: [ 1, -1, -1, -1, -1], # version
-        1: [-1,  2, -1, -1, -1], # cmd
-        2: [-1, -1,  3, -1, -1], # part
-        3: [-1, -1, -1,  4, -1], # events
-        4: [-1, -1, -1, -1, -2], # fl
-        5: [-1, -1, -1, -1, -2], # eof
+        #    0   1   2   3   4   5   6   # token:
+        0: [ 1, -1, -1, -1, -1, -1, -1], # version
+        1: [-1,  2, -1, -1, -1,  2, -1], # cmd
+        2: [-1, -1,  3, -1, -1, -1, -1], # part
+        3: [-1, -1, -1,  4, -1, -1,  4], # events
+        4: [-1, -1, -1, -1, -2, -1, -1], # fl
+        5: [-1, -1, -1, -1, -2, -1, -1], # eof
+        6: [-1,  5, -1, -1, -1, -1, -1], # creator
+        7: [-1, -1, -1,  6, -1, -1, -1], # positions
     }
 
     # body states:
@@ -231,7 +235,7 @@ class XdebugCachegrindFsaParser:
     # 6 got subcall num, expecting fl or cfn or eof
     # 7 got summary, expecting num
     body_fsm = {
-        #    0   1   2   3   4   5   6   7
+        #    0   1   2   3   4   5   6   7   # token:
         0: [ 0, -1, -1, -1, -1, -1, -1, -1], # header
         1: [ 1, -1, -1,  1, -1, -1,  1, -1], # fl
         2: [-1,  2, -1, -1, -1, -1, -1, -1], # fn
@@ -250,6 +254,7 @@ class XdebugCachegrindFsaParser:
 
         state = 0;
         line_no = 0
+        version = None
 
         while True:
             token = None
@@ -258,7 +263,7 @@ class XdebugCachegrindFsaParser:
                 line_no += 1
                 if line == '\n':
                     continue
-                if line == 'version: 0.9.6\n':
+                if line[0:9] == 'version: ':
                     token = 0
                 if line[0:5] == 'cmd: ':
                     token = 1
@@ -268,6 +273,10 @@ class XdebugCachegrindFsaParser:
                     token = 3
                 if line[0:3] == 'fl=':
                     token = 4
+                if line[0:9] == 'creator: ':
+                    token = 6
+                if line[0:11] == 'positions: ':
+                    token = 7
             except StopIteration:
                 token = 5
 
@@ -282,10 +291,13 @@ class XdebugCachegrindFsaParser:
             elif state == -1:
                 raise CgParseError(line_no, line, token)
 
+            elif state == 1:
+                version = line[9:-1]
+
             elif state == 2:
                 cmd = line[5:-1]
 
-        return RawHeader('0.9.6', cmd, '1', 'Time')
+        return RawHeader(version, cmd, '1', 'Time')
 
     def get_body(self):
         body = []
