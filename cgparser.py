@@ -229,21 +229,23 @@ class XdebugCachegrindFsaParser:
     # 0 got header line, expectine more header lines or fl or eof
     # 1 got fl, expecting fn
     # 2 got fn, expecting num or summary
-    # 3 got num, expecting fl or cfn or eof
+    # 3 got num, expecting fl, cfl, cfn or eof
     # 4 got cfn, expecting calls
     # 5 got calls, expecting subcall num
-    # 6 got subcall num, expecting fl or cfn or eof
+    # 6 got subcall num, expecting fl, cfl, cfn or eof
     # 7 got summary, expecting num
+    # 8 got cfl, expecting cfn
     body_fsm = {
-        #    0   1   2   3   4   5   6   7   # token:
-        0: [ 0, -1, -1, -1, -1, -1, -1, -1], # header
-        1: [ 1, -1, -1,  1, -1, -1,  1, -1], # fl
-        2: [-1,  2, -1, -1, -1, -1, -1, -1], # fn
-        3: [-1, -1,  3, -1, -1,  6, -1,  3], # num
-        4: [-1, -1, -1,  4, -1, -1,  4, -1], # cfn
-        5: [-1, -1, -1, -1,  5, -1, -1, -1], # calls
-        6: [-1, -1,  7, -1, -1, -1, -1, -1], # summary
-        7: [-2, -1, -1, -2, -1, -1, -2, -1], # eof
+        #    0   1   2   3   4   5   6   7   8 # token:
+        0: [ 0, -1, -1, -1, -1, -1, -1, -1, -1], # header
+        1: [ 1, -1, -1,  1, -1, -1,  1, -1, -1], # fl
+        2: [-1,  2, -1, -1, -1, -1, -1, -1, -1], # fn
+        3: [-1, -1,  3, -1, -1,  6, -1,  3, -1], # num
+        4: [-1, -1, -1,  4, -1, -1,  4, -1,  4], # cfn
+        5: [-1, -1, -1, -1,  5, -1, -1, -1, -1], # calls
+        6: [-1, -1,  7, -1, -1, -1, -1, -1, -1], # summary
+        7: [-2, -1, -1, -2, -1, -1, -2, -1, -1], # eof
+        8: [-1, -1, -1,  8, -1, -1,  8, -1, -1], # cfl
     }
 
     def __init__(self, filename):
@@ -335,11 +337,14 @@ class XdebugCachegrindFsaParser:
                     token = 5
                 elif line[0:9] == 'summary: ':
                     token = 6
+                elif line[0:4] == 'cfl=':
+                    token = 8
                 elif state == 0:
                     token = 0
             except StopIteration:
                 token = 7
-
+            
+            print state, token, self.body_fsm[token][state];
             try:
                 state = self.body_fsm[token][state]
             except KeyError:
@@ -402,6 +407,9 @@ class XdebugCachegrindFsaParser:
             elif state == 7:
                 summary = int(line[9:-1])
                 raw_entry.summary = summary
+
+            elif state == 8:
+                cfl = line[4:-1]
 
             elif state == -2:
                 break
