@@ -37,11 +37,11 @@ class DotBuilder:
             
             linewidth = 6.0 * stack[-1].sum_inclusive_time/tree.get_total_time() + 1
             if stack[-1].call_count == 1:
-                node_label = '%s\\n%sms' % (fn, stack[-1].sum_self_time/1000)
-                edge_label = '%sms' % (stack[-1].sum_inclusive_time/1000)
+                node_label = '%s\\n%dms' % (fn, stack[-1].sum_self_time/1000)
+                edge_label = '%dms' % (stack[-1].sum_inclusive_time/1000)
             else:
-                node_label = '%s\\n%sx\[%sms..%sms] = %sms' % (fn, stack[-1].call_count, stack[-1].min_self_time/1000, stack[-1].max_self_time/1000, stack[-1].sum_self_time/1000)
-                edge_label = '%sx\[%sms..%sms] = %sms' % (stack[-1].call_count, stack[-1].min_inclusive_time/1000, stack[-1].max_inclusive_time/1000, stack[-1].sum_inclusive_time/1000)
+                node_label = '%s\\n%dx\[%dms..%dms] = %dms' % (fn, stack[-1].call_count, stack[-1].min_self_time/1000, stack[-1].max_self_time/1000, stack[-1].sum_self_time/1000)
+                edge_label = '%dx\[%dms..%dms] = %dms' % (stack[-1].call_count, stack[-1].min_inclusive_time/1000, stack[-1].max_inclusive_time/1000, stack[-1].sum_inclusive_time/1000)
 
             graph.append('"%s" [label="%s" color="%s"]; \n' % (self_id, node_label, color))
             graph.append('"%s" -> "%s" [label="%s" style="setlinewidth(%s)" color="#AAAAFF"]; \n' % (parent_id, self_id, edge_label, linewidth))
