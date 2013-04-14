@@ -70,17 +70,29 @@ class AggregatedCall(object):
         assert self.fn == fn
 
         self.call_count += call_count
+
         if self.min_self_time is None:
             self.min_self_time = min_self_time
         else:
             self.min_self_time = min(self.min_self_time, min_self_time)
-        self.max_self_time = max(self.max_self_time, max_self_time)
+
+        if self.max_self_time is None:
+            self.max_self_time = max_self_time
+        else:
+            self.max_self_time = max(self.max_self_time, max_self_time)
+
         self.sum_self_time += sum_self_time
+
         if self.min_inclusive_time is None:
             self.min_inclusive_time = min_inclusive_time
         else:
             self.min_inclusive_time = min(self.min_inclusive_time, min_inclusive_time)
-        self.max_inclusive_time = max(self.max_inclusive_time, max_inclusive_time)
+
+        if self.max_inclusive_time is None:
+            self.max_inclusive_time = max_inclusive_time
+        else:
+            self.max_inclusive_time = max(self.max_inclusive_time, max_inclusive_time)
+
         self.sum_inclusive_time += sum_inclusive_time
 
     def __str__(self):
