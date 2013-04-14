@@ -30,7 +30,7 @@ if __name__ == '__main__':
         try:
             xdebug_parser = XdebugCachegrindFsaParser(file)
             tree = XdebugCachegrindTreeBuilder(xdebug_parser).get_tree()
-        except CgParseError, e:
+        except CgParseError as e:
             line_no, line, token = e
             sys.stderr.write('Warning: Can\'t parse file \'%s\'\n' % file)
             sys.stderr.write('Line no: %s\n' % line_no)
@@ -47,4 +47,4 @@ if __name__ == '__main__':
                 merged_tree = tree_aggregator.aggregate_call_paths(merged_tree)
 
     merged_tree.filter_inclusive_time(options.threshold)
-    print DotBuilder().get_dot(merged_tree, DotNodeStyler)
+    print(DotBuilder().get_dot(merged_tree, DotNodeStyler))
