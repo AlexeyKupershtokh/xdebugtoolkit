@@ -260,7 +260,7 @@ class XdebugCachegrindFsaParser:
         while True:
             token = None
             try:
-                line = self.fh.next()
+                line = next(self.fh)
                 line_no += 1
                 if line == '\n':
                     continue
@@ -320,7 +320,7 @@ class XdebugCachegrindFsaParser:
             token = None
             line = None
             try:
-                line = self.fh.next()
+                line = next(self.fh)
                 line_no += 1
                 if line == '\n':
                     continue
@@ -369,7 +369,7 @@ class XdebugCachegrindFsaParser:
                     raw_entry.fn = fn_cache[fn] = FunctionName(fn)
 
             elif state == 3:
-                position, time_taken = map(int, line.split(' '))
+                position, time_taken = list(map(int, line.split(' ')))
                 total_self += time_taken
                 if fn == '{main}':
                     total_calls += time_taken
@@ -394,7 +394,7 @@ class XdebugCachegrindFsaParser:
                 calls = line[6:-1]
 
             elif state == 6:
-                position, time_taken = map(int, line.split(' '))
+                position, time_taken = list(map(int, line.split(' ')))
                 if fn == '{main}':
                     total_calls += time_taken
 
