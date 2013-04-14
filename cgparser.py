@@ -6,9 +6,8 @@ that xdebug's callgrind files contain only ends (not starts) of
 calls, therefore it is supposed to handle this manually.
 
 Currently supported format is limited to such requirements:
- - it supports only non-appended files: xdebug.profiler_append=0 
- - version of the file must be 0.9.6 (at least compatible with
-   xdebug 2.0.0..2.0.4, probably with earlier versions too)
+ - it supports only non-appended files: xdebug.profiler_append=0.
+   Consider using cgsplit.py at first in this case.
    
 http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindCalltreeFormat
 """
