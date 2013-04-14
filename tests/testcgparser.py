@@ -4,7 +4,7 @@ Created on May 9, 2009
 @author: wicked
 '''
 import unittest
-from cgparser import *
+from ..cgparser import *
 
 
 class Test(unittest.TestCase):

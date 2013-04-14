@@ -4,8 +4,8 @@ Created on May 16, 2009
 @author: wicked
 '''
 import unittest
-from cgparser import *
-from reader import *
+from ..cgparser import *
+from ..reader import *
 
 
 class Test(unittest.TestCase):
