@@ -342,8 +342,7 @@ class XdebugCachegrindFsaParser:
                     token = 0
             except StopIteration:
                 token = 7
-            
-            print state, token, self.body_fsm[token][state];
+
             try:
                 state = self.body_fsm[token][state]
             except KeyError:
