@@ -248,7 +248,7 @@ class XdebugCachegrindFsaParser:
     }
 
     def __init__(self, filename):
-        self.fh = file(filename, 'rU')
+        self.fh = open(filename, 'rU')
 
     def get_header(self):
         self.fh.seek(0)
