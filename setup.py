@@ -13,6 +13,6 @@ setup(
         """,
     license="LGPL",
 
-    scripts=['cg2dot.py', 'cgsplit.py'],
+    scripts=['bin/cg2dot', 'bin/cgsplit'],
     py_modules=['cgparser', 'dot', 'stylers', 'stylers.default', 'reader']
 )
