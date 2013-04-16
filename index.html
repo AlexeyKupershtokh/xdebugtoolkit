@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>xdebugtoolkit by AlexeyKupershtokh</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/AlexeyKupershtokh/xdebugtoolkit">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/AlexeyKupershtokh/xdebugtoolkit/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/AlexeyKupershtokh/xdebugtoolkit/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>xdebugtoolkit</h1>
+          <p></p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/AlexeyKupershtokh">AlexeyKupershtokh</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>xdebugtoolkit</h1>
+
+<p><a href="https://travis-ci.org/AlexeyKupershtokh/xdebugtoolkit"><img src="https://travis-ci.org/AlexeyKupershtokh/xdebugtoolkit.png?branch=master" alt="Build Status"></a></p>
+
+<p>A toolkit for splitting, aggregating, analyzing and visualizing xdebug cachegrind files.</p>
+
+<h3>Installation</h3>
+
+<div class="highlight"><pre>sudo easy_install xdebugtoolkit <span class="o">[</span>xdot<span class="o">]</span>
+</pre></div>
+
+<p>or</p>
+
+<div class="highlight"><pre>sudo pip install xdebugtoolkit <span class="o">[</span>xdot<span class="o">]</span>
+</pre></div>
+
+<h3>Tools</h3>
+
+<ul>
+<li>
+<a href="">cg2dot</a> - converter from <a href="http://www.xdebug.org/docs/profiler">Xdebug cachegrind</a> files to the <a href="http://www.graphviz.org/">dot</a> format.</li>
+<li>
+<a href="">cgsplit</a> - splitter for appended cachegrind files. May be useful in case your <a href="http://xdebug.org/docs/profiler#profiler_append">xdebug.profiler_append</a> option is set to 1.</li>
+<li>
+<a href="">xdot-pygoocanvas</a> - completely rewritten <a href="https://code.google.com/p/jrfonseca/wiki/XDot">xdot</a> in order to make it utilize PyGooCanvas which gives extra performance on large graphs. You'll need to install PyGooCanvas (<code>sudo apt-get install python-pygoocanvas</code> in Ubuntu) first.</li>
+</ul>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
