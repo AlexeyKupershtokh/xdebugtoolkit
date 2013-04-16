@@ -827,6 +827,9 @@ class Lexer:
         self.filename = filename
 
     def __next__(self):
+        return self.next()
+
+    def next(self):
         while True:
             # save state
             pos = self.pos
