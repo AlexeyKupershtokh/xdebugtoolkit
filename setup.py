@@ -7,7 +7,7 @@ def read(fname):
 
 setup(
     name='xdebugtoolkit',
-    version='0.2.3',
+    version='0.2.3-1',
     author='Alexey Kupershtokh',
     author_email='alexey.kupershtokh@gmail.com',
     url='https://github.com/AlexeyKupershtokh/xdebugtoolkit',
