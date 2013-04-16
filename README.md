@@ -8,6 +8,7 @@ xdebugtoolkit
 sudo easy_install xdebugtoolkit [xdot]
 ```
 or
+
 ```sh
 sudo pip install xdebugtoolkit [xdot]
 ```

@@ -1,14 +1,20 @@
 xdebugtoolkit
 =============
 
-`|Build
-Status| <https://travis-ci.org/AlexeyKupershtokh/xdebugtoolkit>`_
+|Build Status|
 
 Installation
 ~~~~~~~~~~~~
 
-``sh sudo easy_install xdebugtoolkit [xdot]`` or
-``sh sudo pip install xdebugtoolkit [xdot]``
+.. code:: sh
 
-.. |Build
-Status| image:: https://travis-ci.org/AlexeyKupershtokh/xdebugtoolkit.png?branch=master
+    sudo easy_install xdebugtoolkit [xdot]
+
+or
+
+.. code:: sh
+
+    sudo pip install xdebugtoolkit [xdot]
+
+.. |Build Status| image:: https://travis-ci.org/AlexeyKupershtokh/xdebugtoolkit.png?branch=master
+   :target: https://travis-ci.org/AlexeyKupershtokh/xdebugtoolkit
