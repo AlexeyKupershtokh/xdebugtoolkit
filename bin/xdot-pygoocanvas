@@ -104,7 +104,7 @@ class DotColor(object):
         """\
         Parses colors like "H,S,V" or "H S V" or "H, S, V" or any other variation
         """
-        h, s, v = map(float, replace(",", " ").split())
+        h, s, v = list(map(float, replace(",", " ").split()))
         r, g, b = colorsys.hsv_to_rgb(h, s, v)
         return cls(r, g, b)
 
@@ -311,7 +311,7 @@ class BezierShape(Shape):
     def draw(self, cr):
         x0, y0 = self.points[0]
         data = 'M%d,%d' % (x0, y0) 
-        for i in xrange(1, len(self.points), 3):
+        for i in range(1, len(self.points), 3):
             x1, y1 = self.points[i]
             x2, y2 = self.points[i + 1]
             x3, y3 = self.points[i + 2]
@@ -483,9 +483,9 @@ class Graph(Shape):
 
         for edge in edges:
             for bi in ((edge.src.id, edge.dst.id), (edge.dst.id, edge.src.id)):
-                if not self.edges_by_ids.has_key(bi[0]):
+                if bi[0] not in self.edges_by_ids:
                     self.edges_by_ids[bi[0]] = {}
-                if not self.edges_by_ids[bi[0]].has_key(bi[1]):
+                if bi[1] not in self.edges_by_ids[bi[0]]:
                     self.edges_by_ids[bi[0]][bi[1]] = set()
                     self.edges_by_ids[bi[0]][bi[1]].add(edge)
 
@@ -578,7 +578,7 @@ class XDotAttrParser:
         self.pen = Pen()
         self.shapes = []
 
-    def __nonzero__(self):
+    def __bool__(self):
         return self.pos < len(self.buf)
 
     def unescape(self, buf):
@@ -826,7 +826,7 @@ class Lexer:
         self.col = 1
         self.filename = filename
 
-    def next(self):
+    def __next__(self):
         while True:
             # save state
             pos = self.pos
@@ -875,7 +875,7 @@ class Parser:
 
     def __init__(self, lexer):
         self.lexer = lexer
-        self.lookahead = self.lexer.next()
+        self.lookahead = self.lexer.__next__();
 
     def match(self, type):
         if self.lookahead.type != type:
@@ -891,7 +891,7 @@ class Parser:
 
     def consume(self):
         token = self.lookahead
-        self.lookahead = self.lexer.next()
+        self.lookahead = self.lexer.__next__();
         return token
 
 
@@ -1150,7 +1150,7 @@ class XDotParser(DotParser):
             if not bb:
                 return
 
-            xmin, ymin, xmax, ymax = map(float, bb.split(","))
+            xmin, ymin, xmax, ymax = list(map(float, bb.split(",")))
 
             self.xoffset = -xmin
             self.yoffset = -ymax
@@ -1466,7 +1466,7 @@ class DotWidget(goocanvas.Canvas):
         self.filter = filter
 
     def set_dotcode(self, dotcode, filename='<stdin>'):
-        if isinstance(dotcode, unicode):
+        if isinstance(dotcode, str):
             dotcode = dotcode.encode('utf8')
         p = subprocess.Popen(
             [self.filter, '-Txdot'],
@@ -1487,7 +1487,7 @@ class DotWidget(goocanvas.Canvas):
             return False
         try:
             self.set_xdotcode(xdotcode)
-        except ParseError, ex:
+        except ParseError as ex:
             dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
                                        message_format=str(ex),
                                        buttons=gtk.BUTTONS_OK)
@@ -1723,7 +1723,7 @@ class DotWindow(gtk.Window):
             fp = file(filename, 'rt')
             self.set_dotcode(fp.read(), filename)
             fp.close()
-        except IOError, ex:
+        except IOError as ex:
             dlg = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
                                     message_format=str(ex),
                                     buttons=gtk.BUTTONS_OK)
