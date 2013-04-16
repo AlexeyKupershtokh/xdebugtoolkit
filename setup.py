@@ -7,12 +7,12 @@ def read(fname):
 
 setup(
     name='xdebugtoolkit',
-    version='0.2.1',
+    version='0.2.2',
     author='Alexey Kupershtokh',
     author_email='alexey.kupershtokh@gmail.com',
     url='https://github.com/AlexeyKupershtokh/xdebugtoolkit',
     description="A toolkit for splitting, aggregating, analyzing and visualizing xdebug cachegrind files",
-    long_description=read("README.md"),
+    long_description=read("README.rst"),
     license="LGPL",
 
     scripts=['bin/cg2dot', 'bin/cgsplit'],
