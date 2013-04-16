@@ -15,6 +15,6 @@ setup(
     long_description=read("README.rst"),
     license="LGPL",
 
-    scripts=['bin/cg2dot', 'bin/cgsplit'],
-    py_modules=['cgparser', 'dot', 'stylers', 'stylers.default', 'reader']
+    scripts=['bin/cg2dot', 'bin/cgsplit', 'bin/xdot-pygoocanvas'],
+    py_modules=['cgparser', 'dot', 'stylers.default', 'reader']
 )
